@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Kurye Panel</title>
+</head>
+<body>
+
+<h2>📦 Siparişler</h2>
+
+<a href="/logout/">Çıkış</a>
+
+<hr>
+
+{% for siparis in siparisler %}
+    <div>
+        <b>#{{ siparis.id }}</b> |
+        {{ siparis.isletme }} |
+        {{ siparis.teslim_bolge }} |
+        {{ siparis.durum }}
+
+        {% if siparis.durum == "bekliyor" %}
+            <a href="{% url 'siparis_al' siparis.id %}">🛵 Al</a>
+        {% endif %}
+    </div>
+    <hr>
+{% empty %}
+    <p>Henüz sipariş yok.</p>
+{% endfor %}
+
+</body>
+</html>
